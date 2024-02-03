@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .pular {
+            position: absolute;
+            width: 250px; 
+            height: 150px; 
+            background: url('./images/euteamo.png') no-repeat center center;
+            background-size: contain;
+            transition: transform 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <audio id='audio' src='./audio/euteamo.mp3'></audio>
+    <script>
+        var meuAudio = document.getElementById('audio');
+        var quantidadeImagens = 0;
+        var maximoImagens = 10; 
+
+        function criarImagem() {
+            var imagem = document.createElement('div');
+            imagem.classList.add('pular');
+            document.body.appendChild(imagem);
+
+            var posicaoX = Math.random() * (window.innerWidth - 50); 
+            var posicaoY = Math.random() * (window.innerHeight - 50); 
+
+            imagem.style.left = posicaoX + 'px';
+            imagem.style.top = posicaoY + 'px';
+
+            quantidadeImagens++;
+
+            imagem.addEventListener('transitionend', function() {
+                document.body.removeChild(imagem);
+                quantidadeImagens--;
+
+                if (quantidadeImagens >= maximoImagens) {
+                    meuAudio.pause();
+                }
+            });
+
+            setTimeout(function() {
+                imagem.style.transform = 'translateY(-100vh)';
+            }, 100);
+        }
+
+        
+        meuAudio.play();
+        audio.loop = true;
+
+        
+        var cadencia = 2000; 
+        var intervalo = setInterval(function() {
+            criarImagem();
+        }, cadencia);
+
+        
+        var multiplicador = 0.9; 
+        setInterval(function() {
+            cadencia *= multiplicador;
+            clearInterval(intervalo);
+            intervalo = setInterval(function() {
+                criarImagem();
+            }, cadencia);
+        }, 5000,
+        console.log(cadencia)
+        ); 
+    </script>
+</body>
+</html>
