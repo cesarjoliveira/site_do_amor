@@ -57,10 +57,13 @@
                     meuAudio.pause();
                 }
             });
-
+            
             setTimeout(function() {
-                imagem.style.transform = 'translateY(-100vh)';
-            }, 100);
+                listtransform = ['rotate(0.5turn)','translate(120px, 50%)','scale(0.5) translate(-100%, -100%)'];
+                const random = listtransform[Math.floor(Math.random() * listtransform.length)];
+                console.log(random)
+                imagem.style.transform =  random ; 
+            }, cadencia_loop);
         }
 
 
@@ -74,6 +77,7 @@
         
         var multiplicador = 0.9; 
         var somador = 1;
+
         setInterval(function() {
             cadencia *= multiplicador;
             clearInterval(intervalo);
@@ -84,10 +88,7 @@
         }, 2000, 1
         
         );
-        for(cadencia_loop; cadencia_loop < 5; cadencia_loop ++){
-            listmeuaudio[cadencia_loop].play().setTimeout(152)
-            listmeuaudio[cadencia_loop].loop = true
-            };
+        
         
 
     </script>
