@@ -21,11 +21,20 @@
     </style>
 </head>
 <body>
-    <audio id='audio' src='./audio/euteamo.mp3'></audio>
+    <audio class="pular" id='audio' src='./audio/euteamo.mp3' autoplay="true" loop></audio>
+    <audio class="pular" id='audio1' src='./audio/euteamo.mp3'  autoplay="true" loop></audio>
+    <audio class="pular" id='audio2' src='./audio/euteamo.mp3'  autoplay="true" loop></audio>
+    <audio class="pular" id='audio3' src='./audio/euteamo.mp3'  autoplay="true" loop></audio>
+    <audio class="pular" id='audio4' src='./audio/euteamo.mp3'  autoplay="true" loop></audio>
     <script>
         var meuAudio = document.getElementById('audio');
+        var meuAudio1 = document.getElementById('audio1');
+        var meuAudio2 = document.getElementById('audio2');
+        var meuAudio3 = document.getElementById('audio3');
+        var meuAudio4 = document.getElementById('audio4');
+        var listmeuaudio = [meuAudio,meuAudio1,meuAudio2,meuAudio3,meuAudio4]
         var quantidadeImagens = 0;
-        var maximoImagens = 10; 
+        var maximoImagens = 1000; 
 
         function criarImagem() {
             var imagem = document.createElement('div');
@@ -54,27 +63,33 @@
             }, 100);
         }
 
-        
-        meuAudio.play();
-        audio.loop = true;
 
         
         var cadencia = 2000; 
+        var cadencia_loop = 1;
         var intervalo = setInterval(function() {
             criarImagem();
-        }, cadencia);
+        }, cadencia, cadencia_loop);
 
         
         var multiplicador = 0.9; 
+        var somador = 1;
         setInterval(function() {
             cadencia *= multiplicador;
             clearInterval(intervalo);
+            console.log(listmeuaudio[cadencia_loop])
             intervalo = setInterval(function() {
                 criarImagem();
-            }, cadencia);
-        }, 5000,
-        console.log(cadencia)
-        ); 
+            }, cadencia, cadencia_loop);
+        }, 2000, 1
+        
+        );
+        for(cadencia_loop; cadencia_loop < 5; cadencia_loop ++){
+            listmeuaudio[cadencia_loop].play()
+            listmeuaudio[cadencia_loop].loop = true
+            };
+        
+
     </script>
 </body>
 </html>
